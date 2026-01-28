@@ -21,10 +21,10 @@ SELECT
   AVG(avg_price) OVER(ORDER BY order_date) AS moving_average_price
 FROM (
   SELECT
-    DATETRUNC(month, order_date) AS order_date,
+    DATETRUNC(year, order_date) AS order_date,
     SUM(sales_amount) AS total_sales,
     AVG(price) AS avg_price
   FROM gold.fact_sales
   WHERE order_date IS NOT NULL
-  GROUP BY DATETRUNC(month, order_date)
+  GROUP BY DATETRUNC(year, order_date)
   ) t
